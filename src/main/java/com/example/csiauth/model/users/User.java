@@ -26,7 +26,15 @@ public class User implements UserDetails {
     private String login;
     private String name;
     private String password;
+    @Enumerated(EnumType.STRING)
     private UserRole role;
+
+    public User(String login, String name, String password, UserRole role) {
+        this.login = login;
+        this.name = name;
+        this.password = password;
+        this.role = role;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -36,14 +44,10 @@ public class User implements UserDetails {
         return List.of(new SimpleGrantedAuthority("ROLE_USER"));
     }
 
-    @Override
-    public String getPassword() {
-        return login;
-    }
 
     @Override
     public String getUsername() {
-        return "";
+        return login;
     }
 
     @Override
