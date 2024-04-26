@@ -1,4 +1,4 @@
-package com.example.csiauth.shared;
+package com.example.csiauth.shared.auth;
 
 public record LoginResponseDTO(String token) {
 }

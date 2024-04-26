@@ -1,5 +1,6 @@
 package com.example.csiauth.infra.security;
 
+import com.example.csiauth.model.users.User;
 import com.example.csiauth.repository.user.UserRepository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -28,6 +29,10 @@ public class SecurityFilter extends OncePerRequestFilter {
         if (token != null) {
             var login = tokenService.validateToken(token);
             UserDetails userDetails = userRepository.findByLogin(login);
+            User user = userRepository.getUserLogin(userDetails.getUsername());
+            System.out.println(user.getId());
+            request.setAttribute("userId", user.getId());
+            request.setAttribute("login", user.getLogin());
 
             var authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
             SecurityContextHolder.getContext().setAuthentication(authentication);
