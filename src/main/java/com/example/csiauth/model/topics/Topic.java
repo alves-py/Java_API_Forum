@@ -24,4 +24,9 @@ public class Topic {
 
     @Column(name = "id_user")
     private String id_user;
+
+    public Topic(String title, String description) {
+        this.title = title;
+        this.description = description;
+    }
 }

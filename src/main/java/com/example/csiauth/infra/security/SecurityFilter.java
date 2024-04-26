@@ -30,7 +30,6 @@ public class SecurityFilter extends OncePerRequestFilter {
             var login = tokenService.validateToken(token);
             UserDetails userDetails = userRepository.findByLogin(login);
             User user = userRepository.getUserLogin(userDetails.getUsername());
-            System.out.println(user.getId());
             request.setAttribute("userId", user.getId());
             request.setAttribute("login", user.getLogin());
 
