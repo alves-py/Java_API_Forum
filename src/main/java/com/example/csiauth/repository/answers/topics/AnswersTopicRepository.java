@@ -17,4 +17,7 @@ public interface AnswersTopicRepository extends JpaRepository<AnswersTopic, Stri
    @Query("FROM AnswersTopic AS t1 WHERE t1.topic_id = :topicId")
     List<AnswersTopic> findByTopic_id(@Param("topicId") String topicId);
 
+   @Query("FROM AnswersTopic AS t1 WHERE t1.id = :answerId")
+    List<AnswersTopic> findByAnswer_id(@Param("answerId") String answerId);
+
 }
