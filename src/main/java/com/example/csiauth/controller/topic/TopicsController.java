@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -27,14 +28,14 @@ public class TopicsController {
         return new ResponseEntity<>(topicServices.getAllTopics(), HttpStatus.OK);
     }
     @PostMapping()
-    public ResponseEntity<TopicResponse> createTopic(HttpServletRequest request, @RequestBody TopicDTO topicDTO){
+    public ResponseEntity<TopicResponse> createTopic(HttpServletRequest request, @RequestBody @Valid TopicDTO topicDTO){
         String userId = (String) request.getAttribute("userId");
         topicServices.addTopic(userId, topicDTO);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<TopicResponse> updateTopic(HttpServletRequest request, @RequestBody TopicDTO topicDTO, @PathVariable String id){
+    public ResponseEntity<TopicResponse> updateTopic(HttpServletRequest request, @RequestBody @Valid TopicDTO topicDTO, @PathVariable String id){
         String userId = (String) request.getAttribute("userId");
         topicServices.updateTopic(userId, id, topicDTO);
         return ResponseEntity.status(HttpStatus.OK).build();
