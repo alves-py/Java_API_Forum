@@ -26,7 +26,7 @@ Java_API_Forum é uma API desenvolvida em Java utilizando Spring Boot, Spring Se
 
 ## Requisitos
 
-- **Java 11 ou superior**
+- **Java 17 ou superior**
 - **Maven**
 
 ## Instalação
